@@ -180,7 +180,7 @@ function bld(){
     var px,py;
     if(oldPos[c.id]){px=oldPos[c.id].x;py=oldPos[c.id].y;}
     else{px=W/2+(Math.random()-.5)*W*.4;py=H/2+(Math.random()-.5)*H*.4;}
-    var nd={id:c.id,n:c.n,g:c.g,ch:c.c,x:px,y:py,vx:0,vy:0,cn:0};
+    var nd={id:c.id,n:c.n,g:c.g,ch:c.c,desc:c.desc||"",x:px,y:py,vx:0,vy:0,cn:0};
     nodes.push(nd);nm[c.id]=nd;});
   AR.forEach(function(r){if(r.c>cc||!vi[r.f]||!vi[r.t])return;
     edges.push({f:r.f,t:r.t,l:r.l});if(nm[r.f])nm[r.f].cn++;if(nm[r.t])nm[r.t].cn++;});
@@ -553,6 +553,7 @@ function showDrawer(nd){
     +'<h3>'+nd.n+'</h3>'
     +'<span class="tg">'+nd.g+'</span>'
     +'<div style="font-size:13px;color:#9b9bab;margin-bottom:0;">\u9996\u6B21\u51FA\u573A\uff1a'+CN[nd.ch][0]+'</div></div>'
+    +(nd.desc?'<div class="d-section"><div class="d-section-title">\u{1F464} \u4EBA\u7269\u7B80\u4ECB</div><div class="d-desc">'+nd.desc+'</div></div>':'')
     +js
     +(ls?'<div class="d-section"><div class="d-section-title">\u2728 \u4EBA\u7269\u5173\u7CFB</div>'+ls+'</div>':'<div style="color:#9b9bab">\u6682\u65E0\u5173\u7CFB</div>')
     +es;
