@@ -1,10 +1,11 @@
 /* 人物关系图谱 · 通用样式（浅色主题） */
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#f5f5f8;color:#2d2d3a;height:100vh;display:flex;flex-direction:column;overflow:hidden;user-select:none}
+html{overflow:hidden;height:100vh;height:100dvh}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#f5f5f8;color:#2d2d3a;height:100%;display:flex;flex-direction:column;overflow:hidden;user-select:none}
 header{padding:14px 24px;background:#ffffff;border-bottom:1px solid #e0e0e8;display:flex;align-items:center;gap:20px;flex-wrap:wrap;z-index:100}
 h1{font-size:18px;font-weight:600;color:#e94560;white-space:nowrap}
-#main{display:flex;flex:1;overflow:hidden}
-#sidebar{width:220px;background:#ffffff;border-right:1px solid #e0e0e8;overflow-y:auto;flex-shrink:0;padding-top:6px}
+#main{display:flex;flex:1;overflow:hidden;position:relative}
+#sidebar{width:220px;background:#ffffff;border-right:1px solid #e0e0e8;overflow-y:auto;-webkit-overflow-scrolling:touch;flex-shrink:0;padding-top:6px}
 #sidebar .ch-item{padding:8px 14px;cursor:pointer;border-bottom:1px solid rgba(224,224,232,.5);transition:background .15s}
 #sidebar .ch-item:hover{background:rgba(233,69,96,.06)}
 #sidebar .ch-item.active{background:rgba(233,69,96,.1);border-left:3px solid #e94560;padding-left:11px}
@@ -15,20 +16,20 @@ h1{font-size:18px;font-weight:600;color:#e94560;white-space:nowrap}
 #cw:active{cursor:grabbing}
 #cw.nd-hover{cursor:pointer}
 canvas{display:block}
-#drawer{position:absolute;right:0;top:0;width:360px;height:100%;background:#ffffff;border-left:1px solid #e0e0e8;box-shadow:-4px 0 16px rgba(0,0,0,.08);z-index:90;transform:translateX(100%);transition:transform .25s ease;overflow-y:auto;padding:58px 22px 18px 22px;font-size:15px;line-height:1.7}
-#drawer.open{transform:translateX(0)}
+#drawer{position:absolute;right:0;top:0;width:360px;height:100%;background:#ffffff;border-left:1px solid #e0e0e8;box-shadow:-4px 0 16px rgba(0,0,0,.08);z-index:90;transform:translateX(100%);visibility:hidden;transition:transform .25s ease,visibility 0s .25s;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:18px 22px 18px 22px;font-size:15px;line-height:1.7}
+#drawer.open{transform:translateX(0);visibility:visible;transition:transform .25s ease,visibility 0s 0s}
 #drawer h3{color:#e94560;font-size:22px;margin-bottom:4px}
 #drawer .tg{display:inline-block;font-size:13px;padding:2px 8px;border-radius:10px;background:#f0f0f6;color:#6b6b7b;margin-bottom:8px}
-#drawer .d-close{position:absolute;right:14px;top:64px;cursor:pointer;color:#9b9bab;font-size:20px;line-height:1;z-index:2}
+#drawer .d-close{position:absolute;right:14px;top:22px;cursor:pointer;color:#9b9bab;font-size:20px;line-height:1;z-index:2}
 #drawer .d-close:hover{color:#e94560}
-#drawer .d-header{position:sticky;top:-58px;background:#ffffff;z-index:1;padding-bottom:8px;margin:-58px -22px 0 -22px;padding:58px 22px 10px 22px}
+#drawer .d-header{position:sticky;top:-18px;background:#ffffff;z-index:1;padding-bottom:8px;margin:-18px -22px 0 -22px;padding:18px 22px 10px 22px}
 #drawer .d-section{margin-top:12px;padding-top:10px;border-top:1px solid #e0e0e8}
 #drawer .d-section-title{font-size:15px;color:#7c5cbf;margin-bottom:6px;font-weight:600}
 #drawer .d-rel{font-size:14px;color:#4a4a5a;padding:3px 0}
 #drawer .d-evt{font-size:14px;color:#4a4a5a;padding:3px 0}
 #drawer .d-verse{font-size:14px;color:#8b6914;padding:6px 10px;background:rgba(245,238,220,.7);border-radius:6px;margin-top:4px;line-height:1.8;font-style:italic}
 #mm{position:absolute;left:12px;top:12px;border:1px solid #e0e0e8;border-radius:6px;background:rgba(255,255,255,.92);z-index:50;cursor:pointer}
-.lg{display:flex;gap:14px;flex-wrap:wrap;align-items:center;padding:8px 24px;background:#ffffff;border-top:1px solid #e0e0e8}
+.lg{display:flex;gap:14px;flex-wrap:wrap;align-items:center;padding:8px 24px;background:#ffffff;border-top:1px solid #e0e0e8;flex-shrink:0}
 .li{display:flex;align-items:center;gap:4px;font-size:11px;color:#6b6b7b}
 .ld{width:9px;height:9px;border-radius:50%;display:inline-block}
 #sidebar::-webkit-scrollbar{width:4px}
@@ -62,9 +63,9 @@ canvas{display:block}
   #sidebar.open{transform:translateX(0)}
   #sidebar .ch-item{padding:8px 14px}
   #sidebar .ch-title{font-size:11px}
-  #drawer{width:320px;padding:50px 18px 14px 18px}
-  #drawer .d-header{margin:-50px -18px 0 -18px;padding:50px 18px 10px 18px}
-  #drawer .d-close{top:56px}
+  #drawer{width:320px;padding:18px 18px 14px 18px}
+  #drawer .d-header{margin:-18px -18px 0 -18px;padding:18px 18px 10px 18px}
+  #drawer .d-close{top:22px}
   #mm{width:140px;height:90px}
   .lg{padding:8px 14px;gap:10px}
 }
@@ -83,7 +84,7 @@ canvas{display:block}
   /* 抽屉→底部sheet */
   #drawer{position:fixed;left:0;right:0;bottom:0;top:auto;width:100%;max-height:72vh;height:auto;transform:translateY(100%);border-left:none;border-top:1px solid #e0e0e8;border-radius:16px 16px 0 0;box-shadow:0 -4px 20px rgba(0,0,0,.1);padding:6px 18px 24px 18px;z-index:90}
   #drawer.open{transform:translateY(0)}
-  #drawer .d-header{position:sticky;top:0;margin:0 -18px;padding:8px 18px 8px 18px;border-radius:16px 16px 0 0}
+  #drawer .d-header{position:sticky;top:-6px;margin:-6px -18px 0 -18px;padding:14px 18px 8px 18px;border-radius:16px 16px 0 0;background:#ffffff}
   #drawer .d-close{position:absolute;right:14px;top:12px}
   #drawer h3{font-size:19px}
   .drawer-handle{display:block}
