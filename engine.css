@@ -28,6 +28,7 @@ canvas{display:block}
 #drawer .d-rel{font-size:14px;color:#4a4a5a;padding:3px 0}
 #drawer .d-evt{font-size:14px;color:#4a4a5a;padding:3px 0}
 #drawer .d-verse{font-size:14px;color:#8b6914;padding:6px 10px;background:rgba(245,238,220,.7);border-radius:6px;margin-top:4px;line-height:1.8;font-style:italic}
+#drawer .d-desc{font-size:14px;color:#4a4a5a;line-height:1.7;padding:3px 0}
 #mm{position:absolute;left:12px;top:12px;border:1px solid #e0e0e8;border-radius:6px;background:rgba(255,255,255,.92);z-index:50;cursor:pointer}
 .lg{display:flex;gap:14px;flex-wrap:wrap;align-items:center;padding:8px 24px;background:#ffffff;border-top:1px solid #e0e0e8;flex-shrink:0}
 .li{display:flex;align-items:center;gap:4px;font-size:11px;color:#6b6b7b}
