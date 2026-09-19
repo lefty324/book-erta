@@ -528,7 +528,7 @@ function te(e){
 // --- Drawer ---
 function showDrawer(nd){
   var dr=document.getElementById("drawer");
-  var rels=AR.filter(function(r){return r.c<=cc&&(r.f===nd.id||r.t===nd.id);});
+  var rels=AR.filter(function(r){return r.c<=cc&&(r.f===nd.id||r.t===nd.id)&&nm[r.f]&&nm[r.t];});
   var ls=rels.map(function(r){var oi=r.f===nd.id?r.t:r.f;var o=nm[oi];
     return'<div class="d-rel">\u00b7 '+r.l+' \u2192 <span style="color:'+(o?GC[o.g]||'#7a828a':'#7a828a')+';margin-right:3px;">\u25CF</span>'+(o?o.n:oi)+'</div>';}).join("");
   var evts=AE[nd.id];
