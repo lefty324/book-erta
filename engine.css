@@ -1,0 +1,101 @@
+/* 人物关系图谱 · 通用样式（浅色主题） */
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#f5f5f8;color:#2d2d3a;height:100vh;display:flex;flex-direction:column;overflow:hidden;user-select:none}
+header{padding:14px 24px;background:#ffffff;border-bottom:1px solid #e0e0e8;display:flex;align-items:center;gap:20px;flex-wrap:wrap;z-index:100}
+h1{font-size:18px;font-weight:600;color:#e94560;white-space:nowrap}
+#main{display:flex;flex:1;overflow:hidden}
+#sidebar{width:220px;background:#ffffff;border-right:1px solid #e0e0e8;overflow-y:auto;flex-shrink:0;padding-top:6px}
+#sidebar .ch-item{padding:8px 14px;cursor:pointer;border-bottom:1px solid rgba(224,224,232,.5);transition:background .15s}
+#sidebar .ch-item:hover{background:rgba(233,69,96,.06)}
+#sidebar .ch-item.active{background:rgba(233,69,96,.1);border-left:3px solid #e94560;padding-left:11px}
+#sidebar .ch-num{font-size:12px;color:#e94560;font-weight:600}
+#sidebar .ch-title{font-size:11px;color:#6b6b7b;margin-top:2px;line-height:1.4}
+.st{font-size:12px;color:#9b9bab;white-space:nowrap}
+#cw{flex:1;position:relative;overflow:hidden;cursor:grab;touch-action:none}
+#cw:active{cursor:grabbing}
+#cw.nd-hover{cursor:pointer}
+canvas{display:block}
+#drawer{position:absolute;right:0;top:0;width:360px;height:100%;background:#ffffff;border-left:1px solid #e0e0e8;box-shadow:-4px 0 16px rgba(0,0,0,.08);z-index:90;transform:translateX(100%);transition:transform .25s ease;overflow-y:auto;padding:58px 22px 18px 22px;font-size:15px;line-height:1.7}
+#drawer.open{transform:translateX(0)}
+#drawer h3{color:#e94560;font-size:22px;margin-bottom:4px}
+#drawer .tg{display:inline-block;font-size:13px;padding:2px 8px;border-radius:10px;background:#f0f0f6;color:#6b6b7b;margin-bottom:8px}
+#drawer .d-close{position:absolute;right:14px;top:64px;cursor:pointer;color:#9b9bab;font-size:20px;line-height:1;z-index:2}
+#drawer .d-close:hover{color:#e94560}
+#drawer .d-header{position:sticky;top:-58px;background:#ffffff;z-index:1;padding-bottom:8px;margin:-58px -22px 0 -22px;padding:58px 22px 10px 22px}
+#drawer .d-section{margin-top:12px;padding-top:10px;border-top:1px solid #e0e0e8}
+#drawer .d-section-title{font-size:15px;color:#7c5cbf;margin-bottom:6px;font-weight:600}
+#drawer .d-rel{font-size:14px;color:#4a4a5a;padding:3px 0}
+#drawer .d-evt{font-size:14px;color:#4a4a5a;padding:3px 0}
+#drawer .d-verse{font-size:14px;color:#8b6914;padding:6px 10px;background:rgba(245,238,220,.7);border-radius:6px;margin-top:4px;line-height:1.8;font-style:italic}
+#mm{position:absolute;left:12px;top:12px;border:1px solid #e0e0e8;border-radius:6px;background:rgba(255,255,255,.92);z-index:50;cursor:pointer}
+.lg{display:flex;gap:14px;flex-wrap:wrap;align-items:center;padding:8px 24px;background:#ffffff;border-top:1px solid #e0e0e8}
+.li{display:flex;align-items:center;gap:4px;font-size:11px;color:#6b6b7b}
+.ld{width:9px;height:9px;border-radius:50%;display:inline-block}
+#sidebar::-webkit-scrollbar{width:4px}
+#sidebar::-webkit-scrollbar-track{background:transparent}
+#sidebar::-webkit-scrollbar-thumb{background:#d0d0d8;border-radius:2px}
+#sidebar::-webkit-scrollbar-thumb:hover{background:#b0b0b8}
+#drawer::-webkit-scrollbar{width:4px}
+#drawer::-webkit-scrollbar-track{background:transparent}
+#drawer::-webkit-scrollbar-thumb{background:#d0d0d8;border-radius:2px}
+#drawer::-webkit-scrollbar-thumb:hover{background:#b0b0b8}
+/* --- 汉堡按钮 --- */
+.hamburger{display:none;align-items:center;justify-content:center;width:32px;height:32px;border:none;background:transparent;font-size:20px;color:#2d2d3a;cursor:pointer;border-radius:6px;flex-shrink:0;-webkit-tap-highlight-color:transparent}
+.hamburger:hover{background:rgba(233,69,96,.08)}
+.hamburger:active{background:rgba(233,69,96,.15)}
+
+/* --- 侧边栏遮罩 --- */
+.sidebar-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:140;display:none;-webkit-tap-highlight-color:transparent}
+.sidebar-backdrop.show{display:block}
+
+/* --- 抽屉遮罩（手机） --- */
+.drawer-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.25);z-index:85;display:none;-webkit-tap-highlight-color:transparent}
+.drawer-backdrop.show{display:block}
+
+/* --- 底部sheet拖拽条 --- */
+.drawer-handle{display:none;width:36px;height:4px;background:#d0d0d8;border-radius:2px;margin:8px auto 4px auto}
+
+/* ======== 平板 (601-1024px) ======== */
+@media(max-width:1024px){
+  .hamburger{display:flex}
+  #sidebar{position:fixed;left:0;top:0;width:240px;height:100%;z-index:150;transform:translateX(-100%);transition:transform .25s ease;box-shadow:4px 0 16px rgba(0,0,0,.08)}
+  #sidebar.open{transform:translateX(0)}
+  #sidebar .ch-item{padding:8px 14px}
+  #sidebar .ch-title{font-size:11px}
+  #drawer{width:320px;padding:50px 18px 14px 18px}
+  #drawer .d-header{margin:-50px -18px 0 -18px;padding:50px 18px 10px 18px}
+  #drawer .d-close{top:56px}
+  #mm{width:140px;height:90px}
+  .lg{padding:8px 14px;gap:10px}
+}
+
+/* ======== 手机 (≤600px) ======== */
+@media(max-width:600px){
+  .hamburger{display:flex}
+  header{padding:8px 12px;gap:8px}
+  h1{font-size:14px}
+  #sidebar{position:fixed;left:0;top:0;width:260px;height:100%;z-index:150;transform:translateX(-100%);transition:transform .25s ease;box-shadow:4px 0 16px rgba(0,0,0,.08);padding-top:0}
+  #sidebar.open{transform:translateX(0)}
+  #sidebar .ch-item{padding:10px 14px}
+  #sidebar .ch-num{font-size:13px}
+  #sidebar .ch-title{font-size:11px}
+
+  /* 抽屉→底部sheet */
+  #drawer{position:fixed;left:0;right:0;bottom:0;top:auto;width:100%;max-height:72vh;height:auto;transform:translateY(100%);border-left:none;border-top:1px solid #e0e0e8;border-radius:16px 16px 0 0;box-shadow:0 -4px 20px rgba(0,0,0,.1);padding:6px 18px 24px 18px;z-index:90}
+  #drawer.open{transform:translateY(0)}
+  #drawer .d-header{position:sticky;top:0;margin:0 -18px;padding:8px 18px 8px 18px;border-radius:16px 16px 0 0}
+  #drawer .d-close{position:absolute;right:14px;top:12px}
+  #drawer h3{font-size:19px}
+  .drawer-handle{display:block}
+
+  /* 隐藏小地图 */
+  #mm{display:none}
+
+  /* 图例：横向滚动 */
+  .lg{padding:6px 12px;gap:10px;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .li{white-space:nowrap;flex-shrink:0}
+
+  /* 搜索框 */
+  #srch{width:100px;font-size:12px;padding:4px 10px}
+  #srchDrop{width:200px}
+}
