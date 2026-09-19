@@ -47,7 +47,7 @@ function closeSidebar(){
 // --- 初始化 ---
 function init(){
   cv=document.getElementById("c");cx=cv.getContext("2d");
-  rsz();window.addEventListener("resize",function(){rsz();settled=false;lay();});
+  var _rszT;function _onRsz(){clearTimeout(_rszT);_rszT=setTimeout(function(){rsz();autoFit();draw();drawMini();},100);}rsz();window.addEventListener("resize",_onRsz);window.addEventListener("orientationchange",function(){setTimeout(_onRsz,300);setTimeout(_onRsz,600);});if(window.visualViewport)window.visualViewport.addEventListener("resize",_onRsz);
   var lg=document.getElementById("lg"),lgSeen={};
   Object.keys(GC).forEach(function(g){if(lgSeen[g])return;lgSeen[g]=1;
     var s=document.createElement("span");s.className="li";
