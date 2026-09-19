@@ -4,7 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>奇风岁月 · 人物关系图谱</title>
-<link rel="stylesheet" href="engine.css?v=10">
+<script>
+(function(){
+  var p=new URLSearchParams(location.search);
+  if(p.get("v")!=="11"){p.set("v","11");location.replace(location.pathname+"?"+p.toString()+location.hash);}
+})();
+</script>
+<link rel="stylesheet" href="engine.css?v=11">
 </head>
 <body>
 <header>
@@ -24,7 +30,7 @@
 <div id="drawer"><div class="drawer-handle" id="drawerHandle"></div></div>
 </div>
 <div class="lg" id="lg"></div>
-<script src="books/qfsy.js?v=7"></script>
-<script src="engine.js?v=10"></script>
+<script src="books/qfsy.js?v=11"></script>
+<script src="engine.js?v=11"></script>
 </body>
 </html>
